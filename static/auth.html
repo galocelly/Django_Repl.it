@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>repl.it</title>
+</head>
+<script src="https://repl.it/lib/api.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	TOKEN   = { time_created: 1484327614000,
+  msg_mac: 'rM/SfXs+CTaXT1u3Rn83jzC7EBLtdaCv1ltbKyv3jyY='}
+
+var repl = new ReplitClient('api.repl.it', '80', 'java', TOKEN);
+
+repl.connect().then(
+    function() {
+        document.querySelector('.status').innerHTML = 'connected';
+        start();
+    },
+    function() {
+        document.querySelector('.status').innerHTML = 'failed';
+    }
+);
+
+function start() {
+    document.querySelector('button').onclick = function() {
+        repl.evaluate(
+            document.querySelector('input').value,
+             {    
+                stdout: function(str) {
+                    document.querySelector('.out').innerHTML += str + '\n';
+                }
+             }
+        ).then(
+            function(result) {
+                document.querySelector('.result').innerHTML += (result.error || result.data) + '\n';
+            },
+            function(err) {
+                console.error(err);
+            }
+        );
+    };
+}
+
+</script>
+<body>
+	<script src="https://repl.it/lib/api.js"></script>
+	<div class="status">connecting..</div>
+	<input />
+	<button>run</button>
+	<pre class="result">results: </pre>
+	<pre class="out">output: </pre>
+    <br><br><br><br>
+    <h2>Hi {{full_name}} you are now logged in!</h2>
+  <p>Click <a href="/accounts/logout/">here</a> to logout.</p>
+  
+  <p>Click <a href="/accounts/profile/">here</a> to edit your profile information</p>
+</body>
+</html>
