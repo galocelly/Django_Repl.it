@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 import re
 from django import forms
+from django.forms import ModelForm
+#from django import ModelForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from models import *
 from .models import *
 
 
@@ -70,16 +73,25 @@ class RegistrationForm(forms.Form):
 
 #    def clean (self):
  #       return self.cleaned_data
-class Compilado(forms.Form):
-    id_codigo = forms.CharField(label="codigo_id") 
 
-class Compilador(forms.ModelForm):
+
+class Compilador(ModelForm):
    # id_codigo = id_codigo = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs={'maxlength': 30, 'class': 'form-control', 'placeholder': _("id_codigo")}))
 
     class Meta:
-        model = Codigo;
+        model = Codigo
         
-        fields =  ('id_codigo', 'id_usuario', 'link', 'cod_fuente')
-       
+        fields =  ['id_codigo','id_usuario','link', 'cod_fuente']
+
+class Test(forms.Form):
+    id_codigo = forms.CharField(max_length=100)
+    id_usuario = forms.CharField(max_length=100)
+    link= forms.CharField(max_length=100)
+    cod_fuente = forms.CharField(max_length=100)
+    def clean(self):
+        return self.cleaned_data
+
+
+
         
             

@@ -16,7 +16,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django import forms
 from forms import Compilador
-from .forms import Compilado
+from forms import Test
+
 
 #from django.contrib.formtools.wizard.views import SessionWizardView
 from django.core.mail import send_mail
@@ -97,11 +98,34 @@ class RegisterView(FormView):
 class RegisterSuccessView(TemplateView):
     template_name = 'success.html'
 
+
+
+
 # Create your views here.
 def index(request):
-    dato = User.objects.all()
-    form = Compilado()
-    context = {"tittle": "unid" , "form":form}
+    #dato = User.objects.all()
+    if request.method=='POST':
+        formulario = Compilador(request.POST, request.FILES)
+       # formato = Test(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return render(request,'index.html',{'full_name':request.user.username, 'formulario':formulario})
+
+        #if formato.is_valid():
+
+         #   formato.id_codigo = formato.cleaned_data['id_codigo']
+          #  formato.id_usuario = formato.cleaned_data['id_usuario']
+           # formato.link = request.user.username
+            #formato.cod_fuente = formato.cleaned_data['cod_fuente']
+        #Test.save()
+    else:
+        formulario = Compilador()
+        #formato =Test()
+    return render(request,'index.html',{'full_name':request.user.username, 'formulario':formulario})
+    
+
+    #form = Compilado() {'full_name':request.user.username}  'formulario':formulario,
+    #context = {"tittle": "unid" , "form":form}
     #if request.method == "POST":
      #   form = Compilador(request.POST)
       #3  if form.is_valid():
@@ -133,7 +157,7 @@ def index(request):
         #ctx = {'form':form}
         #return render_to_response('index.html',{'full_name': request.user.username},ctx,request)
 
-    return render_to_response('index.html',{'full_name':request.user.username},context)
+    #return render_to_response('index.html',{'full_name':request.user.username})
    # else:
     #    form = Compilador()
      #   ctx = {'form':form}

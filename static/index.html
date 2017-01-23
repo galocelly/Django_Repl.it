@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>repl.it</title>
+<title>Java</title>
 </head>
 <script src="https://repl.it/lib/api.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	TOKEN   = { time_created: 1484327614000,
-  msg_mac: 'rM/SfXs+CTaXT1u3Rn83jzC7EBLtdaCv1ltbKyv3jyY='}
+	TOKEN   = { time_created: 1485136435000,
+  msg_mac: 'Xbyt+yZQZGR1MMRdAyCjSWjYwI+3JsfzT3v5jEzMd9E='}
 
 var repl = new ReplitClient('api.repl.it', '80', 'java', TOKEN);
 
@@ -51,14 +51,13 @@ function start() {
 	<button>Compilar</button>
 	<pre class="result">Errores: </pre>
 	<pre class="out">Salida: </pre>
-    <br><br><br><br>
+    <br><br><br>
     
     <form action="." method="POST">
         {% csrf_token %}
-<ul>
-    {{form.as_ul}}
+    {{formulario.as_p}}
 
-</ul>
+{{formato.as_p}}
         
         <input type="submit" name="grabar">
         <input type="reset" name="clean">
