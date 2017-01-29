@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Java - {% block titulo %}{% endblock %}</title>
+
+    <!-- Bootstrap Core CSS -->
+
+    <link href={% static 'bootstrap/css/bootstrap.min.css' %} rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href={% static 'bootstrap/fonts/css/font-awesome.min.css' %} rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href={% static 'css/agency.css' %} rel="stylesheet">
+
+    <!-- Relp -->
+    <script src="https://repl.it/lib/api.js"></script>
+    <script src={% static 'js/repl.js' %}></script>
+
+</head>
+
+<body id="page-top" class="index">
+
+	<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> MENU<i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="/index/">Compilador Java</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                   
+                    <li>
+                        {% url 'reg' as reg %}
+                        {% if reg %}
+                            {% if user.is_authenticated %}
+                            {% else %}
+                                <a class="page-scroll" href="{{ reg }}">REGISTRARSE</a>
+                            {% endif %}
+                        {% endif %}
+                    </li>
+                    {% url 'login_user' as login_user %}
+                    {% url 'salir' as salir %}
+                    {% if login_user %}
+                    {% if user.is_authenticated %}
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary">CUENTA</button>                         
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                             
+                            <ul class="dropdown-menu submenu" role="menu">
+                                <li><a href="#">{{ user.username }}</a></li>
+                                <li class="divider"></li>
+                                <li><a class="page-scroll" href="{{ salir }}">LOGOUT</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="page-scroll" href="{{ login_user }}">Ingresar</a>
+                    </li>
+                    {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block contenido %}
+
+    {% endblock %}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">COPYRIGHT &copy; COMPILADOR-JAVA 2017</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="https://www.twitter.com"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="https://es.linkedin.com"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                 <div class="col-md-4">
+                    <span class="copyright">Galo Celly - Arquitectura de Aplicaciones</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src={% static 'js/jquery.min.js' %}></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src={% static 'bootstrap/js/bootstrap.min.js' %}></script>
+
+</body>
+
+</html>
+
+

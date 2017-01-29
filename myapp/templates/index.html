@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block titulo %}1{% endblock %}
+
+{% block contenido %}
+
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="row">
+                    <div class="status">Conectando..</div>
+                    <div class="col-md-1">
+                        <button type="submit" class="page-scroll btn btn-xl" id="run" name="run"><i class="fa fa-play"></i> RUN</button>
+                    </div>
+              
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="contact" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <form method="POST" action="">{% csrf_token %}
+                                    {{formul.as_p}}
+                                    {% if user.is_authenticated %}
+                                     <button type="submit" class="page-scroll btn btn-xl"><i class="fa fa-save"></i> Guardar</button>
+                                    {% else %}
+                                    <a href="#portfolioModal1" class="page-scroll btn btn-xl portfolio-link" data-toggle="modal">GUARDAR</a>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <pre class="result">Errores: </pre>
+                                <pre class="out">Salida: </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                {% url 'reg' as reg %}
+                                {% url 'login_user' as login_user %}
+                                <h2>¿Ya estas registrado?</h2>
+                                <a class="btn btn-primary" href="{{ reg }}"><i class="fa fa-times"></i> REGISTRARSE</a>
+                                <a class="btn btn-primary" href="{{ login_user }}"><i class="fa fa-times"></i> INICIAR SESION</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

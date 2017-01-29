@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block titulo %}2{% endblock %}
+
+{% block contenido %}
+
+    <section id="about" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4>Login</h4><br>
+                    <form method="POST" action="">{% csrf_token %}
+                        <div class="form-group">
+                            <h5>Nombre de Usuario:</h5>
+                            <input type="text" class="form-control"  placeholder="usuario" name='username' required data-validation-required-message="FAILED">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <h5>Password:</h5>
+                            <input type="password" class="form-control" placeholder="*******" name='password' required data-validation-required-message="FAILED">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <button class="page-scroll btn btn-xl" type="submit">Entrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

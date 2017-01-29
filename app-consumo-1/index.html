@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+	<title></title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+	<!--Controllers-->
+	<script type="text/javascript" src="controllers/testController.js"></script>
+	<!--Services-->
+	<script type="text/javascript" src="services/testService.js"></script>
+	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
+
+
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="bootstrap/fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<!--[if lt IE 9]>
+
+
+	<link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" />
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
+	<script src="js/hideshow.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery.equalHeight.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() 
+    	{ 
+      	  $(".tablesorter").tablesorter(); 
+   	 } 
+	);
+	$(document).ready(function() {
+
+	//When page loads...
+	$(".tab_content").hide(); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
+
+	//On Click Event
+	$("ul.tabs li").click(function() {
+
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
+
+		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active ID content
+		return false;
+	});
+
+});
+    </script>
+    <script type="text/javascript">
+    $(function(){
+        $('.column').equalHeight();
+    });
+</script>
+</head>
+<header id="header">
+		<hgroup>
+			<h1 class="site_title"><a href="index.html">Angular Rest</a></h1>
+			<h2 class="section_title">Servicios Rest</h2><div class="btn_view_site"><a href="http://127.0.0.1:8000/snippets/">Ir a Django</a></div>
+		</hgroup>
+	</header> <br><br>
+
+
+
+<body ng-app="myApp" ng-controller="testController">
+	<input type="submit" value="Ver todos los posts" ng-click="getAllCodes()"/><br><br>
+	<input type="submit" value="Post especifico" ng-click="getCodes()"/>
+	<input type="text" ng-model="post_id" placeholder="Ingrese el id del post"/><br>
+  <hr/>
+  	<input type="submit" value="Elimine post" ng-click="deletecod(post_id_delete)"/>
+	<input type="text" ng-model="post_id_delete" placeholder="inserte el id del post"/>
+<hr/>
+
+
+
+
+<section class="sec">
+<div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Crear un Post</h2>
+  								<form novalidate class="simple-form">
+
+    								<label class="campo">Id Usuario	: <input class = "caja" type="text" ng-model="a.user" /></label><br />
+   									 <label class="campo">Nombre codigo 	: <input class = "caja2" type="text" ng-model="a.code" /></label><br />
+    								<label class="campo">Codigo 	: <input class = "caja3" type="text" ng-model="a.nombre_codigo" /></label><br />
+    								<label class="campo">Referencia 	: <input  class = "caja"type="text" ng-model="a.referencia" /></label><br /><br>
+    <!--<input type="button" ng-click="reset()" value="Reset" />-->
+    								<input type="submit" ng-click="crear(user)" value="Guardar" />
+    								<input type="submit" ng-click="actualizar(user)" value="Modificar" />
+    							<h4>{{mensaje}}</h4>
+  							</form>
+                        </div>
+                     
+     </div>
+
+</section>
+
+
+
+
+
+
+
+	
+  <hr/>
+  <div ng-if="posts.exist==1">
+		<h1>Codigos</h1>
+		<div ng-repeat="p in posts" class="allcodes">
+
+			<pre>
+				<h3 class="tit"> Id Codigo: {{p.id_code}}</h3>
+				<h4> Id Usuario: {{p.user}}		Nombre de Codigo:{{p.nombre_codigo}}	Referencia:{{p.referencia}}</h4>
+				<h4> Codigo java:{{p.code}}	</h4>
+				<h5>{{p}}</h5>
+				
+			<hr/>
+			</pre>
+			
+		</div>
+	</div>
+	<div ng-if="unPost.exist==1">
+
+		<h1>Obteniendo un codigo en especifico</h1>
+		<pre>
+		<h3 class="tit"> Id Codigo: {{unPost.id_code}}</h3>
+				<h4> Id Usuario: {{unPost.user}}		Nombre de Codigo:{{unPost.nombre_codigo}}	Referencia:{{unPost.refrencia}}</h4>
+				<h4> Codigo java:{{unPost.code}}	</h4>
+				<h5>{{unPost}}</h5>		
+		</pre>
+
+		<div class="col-md-6">
+                           <h2>Modificar un Post</h2>
+  								<form novalidate class="simple-form">
+
+    								<label class="campo">Id Usuario	: <input class = "caja" type="text"    data-ng-model="unPost.user"  /></label><br />
+   									 <label class="campo">Nombre codigo: <input class = "caja2" type="text" data-ng-model="unPost.code" /></label><br />
+    								<label class="campo">Codigo 	: <input class = "caja3" type="text" data-ng-model="unPost.nombre_codigo" /></label><br />
+    								<label class="campo">Referencia 	: <input  class = "caja" type="text" data-ng-model="unPost.referencia" /></label><br /><br>
+    <!--<input type="button" ng-click="reset()" value="Reset" />-->
+    								<input type="submit" ng-click="actualizar(user)" value="Modificar" />
+    							<h4>{{mensaje}}</h4>
+  							</form>
+                        </div>
+                    </div>
+		<hr/>
+	</div>
+
+</body>
+</html>
