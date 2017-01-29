@@ -147,7 +147,7 @@
     								<label class="campo">Codigo 	: <input class = "caja3" type="text" data-ng-model="unPost.nombre_codigo" /></label><br />
     								<label class="campo">Referencia 	: <input  class = "caja" type="text" data-ng-model="unPost.referencia" /></label><br /><br>
     <!--<input type="button" ng-click="reset()" value="Reset" />-->
-    								<input type="submit" ng-click="actualizar(user)" value="Modificar" />
+    								<input type="submit" ng-click="actualizar(unPost.user, unPost.code, unPost.nombre_codigo, unPost.referencia)" value="Modificar" />
     							<h4>{{mensaje}}</h4>
   							</form>
                         </div>

@@ -22,8 +22,10 @@ angular.module('testService', [])//Declaramos el modulo
 				global = $http.delete(path+'snippets/'+id+'/');
 				return global;	
 			},
-			put_post : function(informacion){ //retornara el post por el id
-				global = $http.put(path+'snippets/', informacion);
+			put_post : function(id, informacion){ //retornara el post por el id
+				console.log (informacion);
+				console.log (id);
+				global = $http.put(path+'snippets/'+id+'/', informacion);
 				return global;	
 			}	
 

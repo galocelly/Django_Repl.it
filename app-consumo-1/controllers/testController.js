@@ -42,9 +42,9 @@ function testController($scope, testRequest) {
 
 	  $scope.actualizar = function(){
     datos = {'id_code': $scope.unPost.id_code, 'user': $scope.unPost.user, 'code': $scope.unPost.code, 'nombre_codigo': $scope.unPost.nombre_codigo, 'referencia': $scope.unPost.referencia}
-		testRequest.put_post(datos).then(function (data){
+		testRequest.put_post($scope.unPost.id_code, datos).then(function(data){
 			$scope.mensaje=data.status; // Asignaremos los datos del post
-      console.log(data);
+      		console.log(data);
 		});
 	}
 
