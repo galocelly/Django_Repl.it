@@ -14,6 +14,11 @@ from myapp.serializers import CodigosSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+import time
+from datetime import datetime
+from django.utils.timezone import utc
+ 
+now = datetime.utcnow().replace(tzinfo=utc)
 # Create your views here.
 
 import uuid
@@ -38,7 +43,14 @@ def index(request):
         obj = Codigos.objects.get(id_code=code_id)
     except:
         obj = None
+    today = datetime.now() #fecha actual
+    dateFormat = today.strftime("%Y/%m/%d") # fecha con formato
+ 
+    hora=time.strftime("%H:%M:%S")
+    fecha = dateFormat + " "+hora
 
+#convert string to datetime
+   
     if request.method == 'POST':
         formulario = CodeForm(request.POST)
         #user = request.POST['user']
@@ -48,7 +60,7 @@ def index(request):
         if formulario.is_valid:
             form = formulario.save(commit=False)
             form.user = user
-            form.referencia = get_ref_id()
+            form.referencia = fecha
             form.save()
             return HttpResponseRedirect('/index/')
 

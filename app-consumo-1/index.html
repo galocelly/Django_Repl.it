@@ -93,7 +93,7 @@
     								<label class="campo">Id Usuario	: <input class = "caja" type="text" ng-model="a.user" /></label><br />
    									 <label class="campo">Nombre codigo 	: <input class = "caja2" type="text" ng-model="a.code" /></label><br />
     								<label class="campo">Codigo 	: <input class = "caja3" type="text" ng-model="a.nombre_codigo" /></label><br />
-    								<label class="campo">Referencia 	: <input  class = "caja"type="text" ng-model="a.referencia" /></label><br /><br>
+    								<label class="campo">Fecha 	: <input  class = "caja" type="text" ng-model="a.referencia" /></label><br /><br>
     <!--<input type="button" ng-click="reset()" value="Reset" />-->
     								<input type="submit" ng-click="crear(user)" value="Guardar" />
     								<input type="submit" ng-click="actualizar(user)" value="Modificar" />
@@ -119,7 +119,7 @@
 
 			<pre>
 				<h3 class="tit"> Id Codigo: {{p.id_code}}</h3>
-				<h4> Id Usuario: {{p.user}}		Nombre de Codigo:{{p.nombre_codigo}}	Referencia:{{p.referencia}}</h4>
+				<h4> Id Usuario: {{p.user}}		Nombre de Codigo:{{p.nombre_codigo}}	Fecha:{{p.referencia}}</h4>
 				<h4> Codigo java:{{p.code}}	</h4>
 				<h5>{{p}}</h5>
 				
@@ -133,7 +133,7 @@
 		<h1>Obteniendo un codigo en especifico</h1>
 		<pre>
 		<h3 class="tit"> Id Codigo: {{unPost.id_code}}</h3>
-				<h4> Id Usuario: {{unPost.user}}		Nombre de Codigo:{{unPost.nombre_codigo}}	Referencia:{{unPost.refrencia}}</h4>
+				<h4> Id Usuario: {{unPost.user}}		Nombre de Codigo:{{unPost.nombre_codigo}}	Fecha:{{unPost.refrencia}}</h4>
 				<h4> Codigo java:{{unPost.code}}	</h4>
 				<h5>{{unPost}}</h5>		
 		</pre>
@@ -143,9 +143,9 @@
   								<form novalidate class="simple-form">
 
     								<label class="campo">Id Usuario	: <input class = "caja" type="text"    data-ng-model="unPost.user"  /></label><br />
-   									 <label class="campo">Nombre codigo: <input class = "caja2" type="text" data-ng-model="unPost.code" /></label><br />
-    								<label class="campo">Codigo 	: <input class = "caja3" type="text" data-ng-model="unPost.nombre_codigo" /></label><br />
-    								<label class="campo">Referencia 	: <input  class = "caja" type="text" data-ng-model="unPost.referencia" /></label><br /><br>
+   									 <label class="campo">Codigo: <input class = "caja3" type="text" data-ng-model="unPost.code" /></label><br />
+    								<label class="campo">Nombre de codigo 	: <input class = "caja2" type="text" data-ng-model="unPost.nombre_codigo" /></label><br />
+    								<label class="campo">Fecha 	: <input  class = "caja" type="text" data-ng-model="unPost.referencia" /></label><br /><br>
     <!--<input type="button" ng-click="reset()" value="Reset" />-->
     								<input type="submit" ng-click="actualizar(unPost.user, unPost.code, unPost.nombre_codigo, unPost.referencia)" value="Modificar" />
     							<h4>{{mensaje}}</h4>
