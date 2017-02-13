@@ -1,5 +1,6 @@
-     TOKEN   = { time_created: 1485633510000,
-  msg_mac: '6Hnee1n5d0ioC1UoUDjBA3JJfz3r5eJKpgME18r6j08='}
+
+     TOKEN   = { time_created: 1486919221000,
+  msg_mac: 'bqusctfzUcaQ7M+SAreyuiiWS0sUiC8XST3H98yZeQ4='}
 
         var repl = new ReplitClient('api.repl.it', '80', 'java', TOKEN);
 

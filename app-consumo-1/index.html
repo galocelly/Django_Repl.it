@@ -73,7 +73,8 @@
 
 <body ng-app="myApp" ng-controller="testController">
 	<input type="submit" value="Ver todos los posts" ng-click="getAllCodes()"/><br><br>
-	<input type="submit" value="Post especifico" ng-click="getCodes()"/>
+	<input type="submit" value="Post especifico"  ng-click="getCodes()"  />
+	<input type="submit" value="Post especificosssss"  ng-click="getTipo()"  />
 	<input type="text" ng-model="post_id" placeholder="Ingrese el id del post"/><br>
   <hr/>
   	<input type="submit" value="Elimine post" ng-click="deletecod(post_id_delete)"/>
@@ -91,12 +92,17 @@
   								<form novalidate class="simple-form">
 
     								<label class="campo">Id Usuario	: <input class = "caja" type="text" ng-model="a.user" /></label><br />
-   									 <label class="campo">Nombre codigo 	: <input class = "caja2" type="text" ng-model="a.code" /></label><br />
-    								<label class="campo">Codigo 	: <input class = "caja3" type="text" ng-model="a.nombre_codigo" /></label><br />
-    								<label class="campo">Fecha 	: <input  class = "caja" type="text" ng-model="a.referencia" /></label><br /><br>
+   									 <label class="campo">Codigo 	: <input class = "caja3" type="text" ng-model="a.code" /></label><br />
+    								<label class="campo">Nombre Codigo 	: <input class = "caja2" type="text" ng-model="a.nombre_codigo" /></label><br />
+    								<label class="campo">Referencia 	: <input  class = "caja" type="text" ng-model="a.referencia" /></label><br />
+    								<select ng-model="a.idtipo"  ng-options="p.idtipo as p.tipo for p in postslen">
+								<option value="">Seleccione</option>
+							</select>
+
+
+    								<br>
     <!--<input type="button" ng-click="reset()" value="Reset" />-->
     								<input type="submit" ng-click="crear(user)" value="Guardar" />
-    								<input type="submit" ng-click="actualizar(user)" value="Modificar" />
     							<h4>{{mensaje}}</h4>
   							</form>
                         </div>
@@ -110,33 +116,38 @@
 
 
 
-
 	
   <hr/>
   <div ng-if="posts.exist==1">
+
+
 		<h1>Codigos</h1>
 		<div ng-repeat="p in posts" class="allcodes">
 
 			<pre>
 				<h3 class="tit"> Id Codigo: {{p.id_code}}</h3>
-				<h4> Id Usuario: {{p.user}}		Nombre de Codigo:{{p.nombre_codigo}}	Fecha:{{p.referencia}}</h4>
-				<h4> Codigo java:{{p.code}}	</h4>
+				<h4> Id Usuario: {{p.user}}		Nombre de Codigo:{{p.nombre_codigo}}	Referencia:{{p.referencia}}</h4>
+				<h4> Codigo java:{{p.code}}	    Tipo: {{p.idtipo}}</h4>
 				<h5>{{p}}</h5>
 				
+		</pre>
 			<hr/>
 			</pre>
 			
 		</div>
 	</div>
+	</div>
 	<div ng-if="unPost.exist==1">
+
 
 		<h1>Obteniendo un codigo en especifico</h1>
 		<pre>
 		<h3 class="tit"> Id Codigo: {{unPost.id_code}}</h3>
-				<h4> Id Usuario: {{unPost.user}}		Nombre de Codigo:{{unPost.nombre_codigo}}	Fecha:{{unPost.refrencia}}</h4>
-				<h4> Codigo java:{{unPost.code}}	</h4>
+				<h4> Id Usuario: {{unPost.user}}		Nombre de Codigo:{{unPost.nombre_codigo}} Referencia:{{unPost.referencia}}</h4>
+				<h4> Codigo java:{{unPost.code}}	Tipo: {{unPostipo.idtipo}}</h4>
 				<h5>{{unPost}}</h5>		
-		</pre>
+
+
 
 		<div class="col-md-6">
                            <h2>Modificar un Post</h2>
@@ -147,7 +158,13 @@
     								<label class="campo">Nombre de codigo 	: <input class = "caja2" type="text" data-ng-model="unPost.nombre_codigo" /></label><br />
     								<label class="campo">Fecha 	: <input  class = "caja" type="text" data-ng-model="unPost.referencia" /></label><br /><br>
     <!--<input type="button" ng-click="reset()" value="Reset" />-->
-    								<input type="submit" ng-click="actualizar(unPost.user, unPost.code, unPost.nombre_codigo, unPost.referencia)" value="Modificar" />
+
+    								<select ng-model="unPost.idtipo"  ng-options="p.idtipo as p.tipo for p in postslen">
+								<option value="unPost.idtipo"></option>
+							</select>
+
+							<!--  <input type="submit" ng-click="actualizar(unPost.user, unPost.code, unPost.nombre_codigo, unPost.referencia, unPost.idtipo)" ng-click="getTipo(unPostipo.idtipo)" value="Modificar" />    -->
+    								<input type="submit" ng-click="actualizar(unPost.user, unPost.code, unPost.nombre_codigo, unPost.referencia, unPost.idtipo)"  value="Modificar" />
     							<h4>{{mensaje}}</h4>
   							</form>
                         </div>
@@ -155,5 +172,35 @@
 		<hr/>
 	</div>
 
+<!--
+<div ng-repeat="z in postslen">
+
+					<tbody>
+					<pre>
+
+						  <table style="width:100%" >
+
+							<thead>
+							<tr>
+								<th>Id Len:</th>
+								<th>Lenguja</th>
+
+							</tr>
+							</thead>
+							  <tbody>
+							  <tr>
+								<td>{{z.idtipo}}</td>
+								<td>{{z.tipo}}</td>
+				  				</tr>
+							  </tbody>
+						  </table>
+	  				</pre>
+
+	  				-->
+
+
 </body>
+<footer>
+	
+</footer>
 </html>

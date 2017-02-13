@@ -30,7 +30,7 @@ class CodeForm(forms.ModelForm):
 
     class Meta:
         model = Codigos
-        fields = ('nombre_codigo','code')
+        fields = ('nombre_codigo','code','idtipo')
         exclude = ['user']
 
     def __init__(self, *args, **kwargs):

@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^snippets/$', views.CodigosList.as_view()),
     url(r'^snippets/(?P<pk>[0-9]+)/$', views.CodigosDetail.as_view()),
+    url(r'^tipo/$', views.TipoList.as_view()),
     url(r'^', views.index, name=''),
 ]
 #urlpatterns = format_suffix_patterns(urlpatterns)

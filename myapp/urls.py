@@ -11,8 +11,8 @@ urlpatterns = [
     url(r'^login_user/$', views.login_user, name='login_user'),
     url(r'^salir/$', views.salir, name='salir'),
     
-    #url(r'^snippets/$', views.CodigosList.as_view()),
-    #url(r'^snippets/(?P<pk>[0-9]+)/$', views.CodigosDetail.as_view()),
+    url(r'^snippets/$', views.CodigosList.as_view()),
+    url(r'^snippets/(?P<pk>[0-9]+)/$', views.CodigosDetail.as_view()),
     
 ]
 

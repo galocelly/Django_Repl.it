@@ -1,0 +1,50 @@
+backports.shutil-get-terminal-size==1.0.0
+decorator==4.0.11
+django-cors-headers==2.0.0
+djangorestframework==3.5.3
+enum34==1.1.6
+httpie==0.9.9
+ipython==5.1.0
+ipython-genutils==0.1.0
+pathlib2==2.2.0
+pexpect==4.2.1
+pickleshare==0.7.4
+prompt-toolkit==1.0.9
+ptyprocess==0.5.1
+Pygments==2.1.3
+requests==2.12.4
+scandir==1.4
+simplegeneric==0.8.1
+six==1.10.0
+traitlets==4.3.1
+wcwidth==0.1.7
+
+
+
+CREATE TABLE codigos (
+  id_code serial NOT NULL,
+  user_id integer NOT NULL,
+  code text,
+  nombre_codigo character varying(20),
+  referencia  character varying(20),
+  idtipo integer references tipo(idtipo),
+  CONSTRAINT codigos_pkey PRIMARY KEY (id_code),
+  CONSTRAINT user_code FOREIGN KEY (user_id)
+      REFERENCES auth_user (id)
+
+);
+
+
+Create Table tipo (
+  idtipo serial not null,
+  tipo character varying(70),
+ CONSTRAINT tipo_pkey PRIMARY KEY (idtipo)
+);
+
+
+
+Insert into tipo values ('Java Application');
+Insert into tipo values ('2','Java Class Library');
+Insert into tipo values ('3’,'Web Application');
+Insert into tipo values ('4', 'Enterprise application');
+Insert into tipo values ('5', 'EJB Module');

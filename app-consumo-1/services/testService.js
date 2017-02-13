@@ -5,7 +5,7 @@ angular.module('testService', [])//Declaramos el modulo
 		return {
 			//Login
 			posts : function(){ //Retornara la lista de posts
-				global = $http.get(path+'snippets');
+				global = $http.get(path+'snippets/');
 				return global;
 			},
 			post : function(id){ //retornara el post por el id
@@ -27,9 +27,15 @@ angular.module('testService', [])//Declaramos el modulo
 				console.log (id);
 				global = $http.put(path+'snippets/'+id+'/', informacion);
 				return global;	
-			}	
+			},	
+			postslen : function(){ //Retornara la lista de posts
+				global = $http.get(path+'tipo/');
+				return global;
+			},
 
-
-
+postslenn : function(id){ //Retornara la lista de posts
+				global = $http.get(path+'tipo/'+id+'/');
+				return global;
+			}
 		}
 	});

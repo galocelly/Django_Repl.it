@@ -87,11 +87,23 @@ class Codigos(models.Model):
     code = models.TextField(blank=True, null=True)
     nombre_codigo = models.CharField(max_length=20, blank=True, null=True)
     referencia = models.CharField(max_length=50, blank=True, null=True)
+    idtipo = models.ForeignKey('Tipo', models.DO_NOTHING, db_column='idtipo', blank=True, null=True)
+
 
     class Meta:
         managed = False
         db_table = 'codigos'
 
+class Tipo(models.Model):
+    idtipo = models.AutoField(primary_key=True)
+    tipo = models.CharField(max_length=70, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tipo'
+
+    def __str__(self):
+        return '%s' % (self.tipo)
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
